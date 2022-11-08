@@ -39,7 +39,7 @@ module template_tb (
 		##1;
 	endtask
 
-	task test(logic [N-1:0] a1, logic [N-1:0] b1);
+	task test(logic [15:0] a1, logic [N-1:0] b1);
 		a		<= a1;
 		b		<= b1;
 		vld		<= 1'b1;
@@ -69,7 +69,7 @@ module template_tb (
 		for (int m2 = 0; m2 < (1 << N) - 1; m2 ++) begin 
 			if ($countbits(m2, '1) <= 2) begin 
 				$display("Multiplying for %d", m2);
-				for (int m1 = 0; m1 < (1 << (16 + 1)) - 1; m1 ++) begin 
+				for (int m1 = 0; m1 < (1 << (4 + 1)) - 1; m1++) begin 
 					test(m1, m2);
 					##1;
 
