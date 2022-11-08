@@ -20,9 +20,6 @@ module two_bit_multiplier #(
 	// assign 	first_one_bit_pos 			= find_first_one_bit_pos(b);
 
 	/**************************** TASK DECLARATION ******************************/
-	// task reset();
-		
-	// endtask : reset
 
 	/**************************** FUNC DECLARATION ******************************/
 	// function set_defaults();
