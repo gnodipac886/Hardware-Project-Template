@@ -2,7 +2,7 @@ module top;
 	/**************************** TIMING DECLARATION ******************************/
     timeunit 1ns;
     timeprecision 1ns;
-    int timeout = 10000;
+    int timeout = 1000000;
 
     /***************************** CLOCK GENERATION *******************************/
     bit clk;
@@ -14,8 +14,8 @@ module top;
 	/******************************* TIME OUT TRAP ********************************/
     always @(posedge clk) begin
 		if (timeout == 0) begin
-			$display("		Timed out ⏳⏳⏳ ❌ ❌ ❌");
-			$finish;
+			// $display("		Timed out ⏳⏳⏳ ❌ ❌ ❌");
+			// $finish;
 		end
 		timeout <= timeout - 1;
 	end

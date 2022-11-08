@@ -1,29 +1,62 @@
-module template #(
-	parameter TEMPLATE 		= 512
+module shift_multiplier #(
+	parameter N 		= 4
 )(
-	input 	logic 						clk_i,
+	input 	logic 						clk,
 	input 	logic 						rst_n,
+	input 	logic 		[15:0]			a,
+	input 	logic 		[N-1:0]			b,
+	input	logic 						vld,
+	output	logic 		[31: 0] 		c,
+	output 	logic 						result_vld
 );
 
 	/**************************** ENUM DECLARATION ******************************/
 	enum logic [1:0] {
-		A, B, C
+		IDLE, MUL, RESULT
 	} state, next_state;
 
 	/**************************** LOGIC DECLARATION *****************************/
+	logic 	[$clog2(N) - 1:0] 			bit_counter;
 
 	/**************************** TASK DECLARATION ******************************/
 	task reset();
-
+		state 		<= IDLE;
+		bit_counter <= '0;
+		c 			<= '0;
 	endtask : reset
+
+	task accumulate();
+		if (state == MUL && vld) begin
+			c 			<= b[bit_counter] ? c + (a << bit_counter) : c;
+			bit_counter	<= bit_counter + 1;
+		end 
+	endtask
 
 	/**************************** FUNC DECLARATION ******************************/
 	function void set_state_defaults();
-
+		next_state = state;
+		result_vld = '0;
 	endfunction : set_state_defaults
 
 	function void set_action_defaults();
-        
+		unique case(state)
+			IDLE: begin 
+				if (vld)
+					next_state = MUL;
+			end 
+
+			MUL: begin 
+				if (bit_counter == N - 1)
+					next_state = RESULT;
+			end 
+
+			RESULT: begin 
+				result_vld = 1'b1;
+				next_state = IDLE;
+			end 
+
+			default:;
+		endcase
 	endfunction : set_action_defaults
 
 	/******************************* COMB BLOCKS ********************************/
@@ -33,11 +66,12 @@ module template #(
 	end
 
 	/******************************* PROC BLOCKS ********************************/
-	always_ff @(posedge clk_i) begin
+	always_ff @(posedge clk) begin
 		if(~rst_n) begin
 			reset();
 		end else begin
-            
+			state <= next_state;
+            accumulate();
 		end
 	end
 
