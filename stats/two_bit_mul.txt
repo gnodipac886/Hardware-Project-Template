@@ -1,0 +1,43 @@
+Total logic elements	94,370 / 119,088 ( 79 % )
+-- Combinational with no register	94370
+-- Register only	0
+-- Combinational with a register	0
+	
+Logic element usage by number of LUT inputs	
+-- 4 input functions	55
+-- 3 input functions	58299
+-- <=2 input functions	36016
+-- Register only	0
+	
+Logic elements by mode	
+-- normal mode	33076
+-- arithmetic mode	61294
+	
+Total registers*  	0 / 121,643 ( 0 % )
+-- Dedicated logic registers	0 / 119,088 ( 0 % )
+-- I/O registers	0 / 2,555 ( 0 % )
+	
+Total LABs:  partially or completely used	6,814 / 7,443 ( 92 % )
+Virtual pins	0
+I/O pins	56 / 526 ( 11 % )
+-- Clock pins 	1 / 8 ( 13 % )
+-- Dedicated input pins 	0 / 9 ( 0 % )
+ 	 
+M9Ks	0 / 432 ( 0 % )
+Total block memory bits	0 / 3,981,312 ( 0 % )
+Total block memory implementation bits	0 / 3,981,312 ( 0 % )
+Embedded Multiplier 9-bit elements	0 / 576 ( 0 % )
+PLLs	0 / 4 ( 0 % )
+Global signals 	0
+-- Global clocks	0 / 20 ( 0 % )
+JTAGs	0 / 1 ( 0 % )
+CRC blocks	0 / 1 ( 0 % )
+ASMI blocks	0 / 1 ( 0 % )
+Oscillator blocks	0 / 1 ( 0 % )
+Impedance control blocks	0 / 4 ( 0 % )
+Average interconnect usage (total/H/V)	25.8% / 23.7% / 28.9%
+Peak interconnect usage (total/H/V)	31.7% / 29.3% / 37.4%
+Maximum fan-out	30000
+Highest non-global fan-out	30000
+Total fan-out	241430
+Average fan-out	2.56

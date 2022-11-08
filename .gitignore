@@ -33,7 +33,6 @@ timing
 *.qsf
 .qsys_edit/
 output_files/
-stats/
 csrc/
 simv
 simv.daidir/
