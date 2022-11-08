@@ -39,7 +39,7 @@ module template_tb (
 		##1;
 	endtask
 
-	task test(logic [N-1:0] a1, logic [N-1:0] b1);
+	task test(logic [15:0] a1, logic [N-1:0] b1);
 		a		<= a1;
 		b		<= b1;
 		vld		<= 1'b1;
