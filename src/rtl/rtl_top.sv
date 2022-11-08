@@ -1,4 +1,4 @@
-module top #(
+module rtl_top #(
 	N = 4,
 	gen_num 	= 1500
 ) (

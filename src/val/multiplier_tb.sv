@@ -15,7 +15,7 @@ module template_tb (
 	default clocking tb_clk @(posedge clk); endclocking
 
 	/**************************** DUT DECLARATION ********************************/
-	two_bit_multiplier #(
+	two_bit_multiplier2 #(
 		.N(N)
 	) dut (
 		.*
@@ -69,7 +69,7 @@ module template_tb (
 		for (int m2 = 0; m2 < (1 << N) - 1; m2 ++) begin 
 			if ($countbits(m2, '1) <= 2) begin 
 				$display("Multiplying for %d", m2);
-				for (int m1 = 0; m1 < (1 << (4 + 1)) - 1; m1++) begin 
+				for (int m1 = 0; m1 < (1 << (16 + 1)) - 1; m1++) begin 
 					test(m1, m2);
 					##1;
 
