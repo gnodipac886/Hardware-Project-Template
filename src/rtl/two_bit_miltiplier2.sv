@@ -32,25 +32,30 @@ module two_bit_multiplier2 #(
 
 	/**************************** FUNC DECLARATION ******************************/
 	function logic [$clog2(N):0] find_first_one_bit_pos(logic [N-1:0] local_b);
-		priority case(1'b1)
-			local_b[3]: begin
-				return 3; 
-			end 
+		logic [$clog2(N):0] temp = 0;
+		for (int i = 0; i < N; i++) begin 
+			temp = local_b[i] ? i : temp; 
+		end 
+		return temp;
+		// priority case(1'b1)
+		// 	local_b[3]: begin
+		// 		return 3; 
+		// 	end 
 
-			local_b[2]: begin
-				return 2; 
-			end 
+		// 	local_b[2]: begin
+		// 		return 2; 
+		// 	end 
 
-			local_b[1]: begin
-				return 1; 
-			end 
+		// 	local_b[1]: begin
+		// 		return 1; 
+		// 	end 
 
-			local_b[0]: begin
-				return 0; 
-			end 
+		// 	local_b[0]: begin
+		// 		return 0; 
+		// 	end 
 
-			default:;
-		endcase
+		// 	default:;
+		// endcase
 	endfunction
 
 	/******************************* COMB BLOCKS ********************************/
