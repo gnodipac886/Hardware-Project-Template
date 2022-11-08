@@ -14,10 +14,10 @@ module two_bit_multiplier #(
 
 	/**************************** LOGIC DECLARATION *****************************/
 	logic 	[$clog2(N) - 1:0] 			first_one_bit_pos;
-	logic	[1:0]									num_one_bits;
+	logic	[1:0]						num_one_bits;
 
 	assign 	num_one_bits 				= ^b ? 2'd1 : ((b == 0) ? 2'd0 : 2'd2);
-	assign 	first_one_bit_pos 		= find_first_one_bit_pos(b);
+	assign 	first_one_bit_pos 			= find_first_one_bit_pos(b);
 
 	/**************************** TASK DECLARATION ******************************/
 	// task reset();
@@ -26,7 +26,6 @@ module two_bit_multiplier #(
 
 	/**************************** FUNC DECLARATION ******************************/
 	function set_defaults();
-		first_one_bit_pos 	= '0;
 		c 					= '0;
 		result_vld 			= '0;
 	endfunction : set_defaults
@@ -47,7 +46,6 @@ module two_bit_multiplier #(
 
 	/******************************* COMB BLOCKS ********************************/
 	always_comb begin : MULTIPLY
-		first_one_bit_pos 	= '0;
 		c 							= '0;
 		result_vld 				= '0;
 		if (vld) begin 

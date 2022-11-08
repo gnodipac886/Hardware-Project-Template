@@ -34,3 +34,8 @@ timing
 .qsys_edit/
 output_files/
 stats/
+csrc/
+simv
+simv.daidir/
+ucli.key
+waveform.vcd

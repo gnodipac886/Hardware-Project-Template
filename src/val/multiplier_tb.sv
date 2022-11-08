@@ -15,7 +15,7 @@ module template_tb (
 	default clocking tb_clk @(posedge clk); endclocking
 
 	/**************************** DUT DECLARATION ********************************/
-	shift_multiplier #(
+	two_bit_multiplier #(
 		.N(N)
 	) dut (
 		.*
