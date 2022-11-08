@@ -14,9 +14,10 @@ module two_bit_multiplier #(
 
 	/**************************** LOGIC DECLARATION *****************************/
 	logic 	[$clog2(N) - 1:0] 			first_one_bit_pos;
-	logic	[1:0]						num_one_bits;
+	logic	[1:0]									num_one_bits;
 
 	assign 	num_one_bits 				= ^b ? 2'd1 : ((b == 0) ? 2'd0 : 2'd2);
+	assign 	first_one_bit_pos 		= find_first_one_bit_pos(b);
 
 	/**************************** TASK DECLARATION ******************************/
 	// task reset();
@@ -24,27 +25,33 @@ module two_bit_multiplier #(
 	// endtask : reset
 
 	/**************************** FUNC DECLARATION ******************************/
-	function set_defaults;
+	function set_defaults();
 		first_one_bit_pos 	= '0;
 		c 					= '0;
 		result_vld 			= '0;
 	endfunction : set_defaults
 
-	function void find_first_one_bit_pos();
-		first_one_bit_pos 	= num_one_bits[0] ? $clog2(b) : ((b == 0) ? '0 : $clog2(b) - 1);
+	function int find_first_one_bit_pos(int local_b);
+		int pos 	= 0;
+		for (int i = 0; i < N;  i++) begin 
+			if (local_b[i])
+				pos 	= i;
+		end 
+		return pos;
 	endfunction : find_first_one_bit_pos
 
 	function void multiply();
-		c 					= (a << first_one_bit_pos) + ((num_one_bits == 2'd1) ? 0 : (a << $clog2(b & ~(1 << first_one_bit_pos))));
+		c 					= (a << first_one_bit_pos) + ((num_one_bits == 2'd1) ? 0 : (a << find_first_one_bit_pos(b & ~(1 << first_one_bit_pos))));
 		// $display("first_one: %d, num_one_bits: %d, second_bit_pos: %d", first_one_bit_pos, num_one_bits, $clog2(b & ~(1 << first_one_bit_pos)));
 	endfunction : multiply
 
 	/******************************* COMB BLOCKS ********************************/
 	always_comb begin : MULTIPLY
-		set_defaults();
+		first_one_bit_pos 	= '0;
+		c 							= '0;
+		result_vld 				= '0;
 		if (vld) begin 
-			if (b != '0) begin 
-				find_first_one_bit_pos();
+			if (b != '0) begin
 				multiply();
 			end
 			result_vld = 1'b1;
