@@ -9,7 +9,7 @@ module top;
     always #5 clk = clk === 1'b0;
 
     /*************************** TESTBENCH DECLARATION ****************************/
-    template_tb tb_i(.*);
+    two_bit_multiplier_tb tb_i(.*);
 
 	/******************************* TIME OUT TRAP ********************************/
     always @(posedge clk) begin

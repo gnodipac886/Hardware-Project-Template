@@ -1,4 +1,4 @@
-module template_tb (
+module multiplier_tb (
 	input logic clk
 );
 
