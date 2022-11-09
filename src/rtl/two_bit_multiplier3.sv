@@ -1,7 +1,4 @@
-`define PLUS 	1'b0
-`define MINUS 	1'b1
-
-module two_bit_multiplier2 #(
+module two_bit_multiplier3 #(
 	parameter a_N		= 16,
 	parameter N 		= 4
 ) (
