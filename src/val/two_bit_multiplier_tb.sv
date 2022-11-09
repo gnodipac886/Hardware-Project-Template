@@ -20,6 +20,7 @@ module two_bit_multiplier_tb (
 
 	/**************************** DUT DECLARATION ********************************/
 	two_bit_multiplier3 #(
+		.a_N(a_N),
 		.N(N)
 	) dut (
 		.*
