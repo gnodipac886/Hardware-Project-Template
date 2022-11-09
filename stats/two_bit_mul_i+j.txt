@@ -1,17 +1,17 @@
-Total logic elements	77 / 119,088 ( < 1 % )
--- Combinational with no register	77
+Total logic elements	62 / 119,088 ( < 1 % )
+-- Combinational with no register	62
 -- Register only	0
 -- Combinational with a register	0
 	
 Logic element usage by number of LUT inputs	
 -- 4 input functions	24
--- 3 input functions	42
--- <=2 input functions	11
+-- 3 input functions	32
+-- <=2 input functions	6
 -- Register only	0
 	
 Logic elements by mode	
--- normal mode	53
--- arithmetic mode	24
+-- normal mode	51
+-- arithmetic mode	11
 	
 Total registers*  	0 / 121,643 ( 0 % )
 -- Dedicated logic registers	0 / 119,088 ( 0 % )
@@ -36,8 +36,8 @@ ASMI blocks	0 / 1 ( 0 % )
 Oscillator blocks	0 / 1 ( 0 % )
 Impedance control blocks	0 / 4 ( 0 % )
 Average interconnect usage (total/H/V)	0.0% / 0.0% / 0.0%
-Peak interconnect usage (total/H/V)	0.4% / 0.5% / 0.4%
+Peak interconnect usage (total/H/V)	0.3% / 0.4% / 0.2%
 Maximum fan-out	15
 Highest non-global fan-out	15
-Total fan-out	290
-Average fan-out	2.00
+Total fan-out	249
+Average fan-out	1.92

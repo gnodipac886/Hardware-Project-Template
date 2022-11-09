@@ -10,7 +10,7 @@ module two_bit_multiplier3 #(
 	input 	logic 								one_term,
 	input 	logic 								b_sign,
 	input	logic 								vld,
-	output	logic 		[(a_N + (1 << N))-1:0]	c,
+	output	logic 		[(a_N + (1 << N)):0]	c,
 	output 	logic 								result_vld
 );
 
@@ -18,10 +18,10 @@ module two_bit_multiplier3 #(
 	
 
 	/**************************** LOGIC DECLARATION *****************************/
-	logic [(a_N + (1 << N))-1:0] 	two_term_result;
+	logic [(a_N + (1 << N)):0] 	two_term_result;
 	
 	assign 							result_vld 		= vld;
-	assign 							two_term_result = (a << b_i) + (b_sign ? ((-a) << b_j): (a << b_j));
+	assign 							two_term_result = (a << b_i) + (b_sign ? -(a << b_j): (a << b_j));
 	assign 							c 				= one_term ? (a << b_i) : two_term_result;
 
 	/*************************** GENERATE DECLARATION ***************************/

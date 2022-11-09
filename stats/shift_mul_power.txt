@@ -1,12 +1,12 @@
-Power Analyzer Status	Successful - Tue Nov  8 00:49:25 2022
+Power Analyzer Status	Successful - Wed Nov  9 00:02:10 2022
 Quartus Prime Version	22.1std.0 Build 915 10/25/2022 SC Lite Edition
 Revision Name	META
-Top-level Entity Name	top
+Top-level Entity Name	shift_multiplier
 Family	Cyclone 10 LP
 Device	10CL120ZF780I8G
 Power Models	Final
-Total Thermal Power Dissipation	124.46 mW
+Total Thermal Power Dissipation	119.45 mW
 Core Dynamic Thermal Power Dissipation	0.00 mW
-Core Static Thermal Power Dissipation	69.59 mW
-I/O Thermal Power Dissipation	54.86 mW
+Core Static Thermal Power Dissipation	69.42 mW
+I/O Thermal Power Dissipation	50.02 mW
 Power Estimation Confidence	Low: user provided insufficient toggle rate data

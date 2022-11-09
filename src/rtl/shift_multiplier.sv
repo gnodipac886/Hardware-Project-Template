@@ -1,5 +1,5 @@
 module shift_multiplier #(
-	parameter a_N		= 16,
+	parameter a_N		= 8,
 	parameter N 		= 4
 )(
 	input 	logic 									clk,
@@ -18,25 +18,27 @@ module shift_multiplier #(
 
 	/**************************** LOGIC DECLARATION *****************************/
 	logic 	[$clog2(N) - 1:0] 			bit_counter;
+	logic 	[(a_N + (1 << N))-1:0]		_c;
 
 	/**************************** TASK DECLARATION ******************************/
 	task reset();
 		state 		<= IDLE;
 		bit_counter <= '0;
-		c 			<= '0;
+		_c 			<= '0;
 	endtask : reset
 
 	task accumulate();
 		if (state == MUL && vld) begin
-			c 			<= b[bit_counter] ? c + (a << bit_counter) : c;
+			_c 			<= b[bit_counter] ? _c + (a << bit_counter) : _c;
 			bit_counter	<= bit_counter + 1;
 		end 
 	endtask
 
 	/**************************** FUNC DECLARATION ******************************/
 	function void set_state_defaults();
-		next_state = state;
-		result_vld = '0;
+		next_state 	= state;
+		result_vld 	= '0;
+		c 			= '0;
 	endfunction : set_state_defaults
 
 	function void set_action_defaults();
@@ -52,8 +54,9 @@ module shift_multiplier #(
 			end 
 
 			RESULT: begin 
-				result_vld = 1'b1;
-				next_state = IDLE;
+				c  			= a[a_N-1] ^ b[N-1] ? -_c : _c;
+				result_vld 	= 1'b1;
+				next_state 	= IDLE;
 			end 
 
 			default:;
