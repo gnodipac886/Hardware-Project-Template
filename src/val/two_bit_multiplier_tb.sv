@@ -45,7 +45,12 @@ module two_bit_multiplier_tb (
 	endtask
 
 	task test(logic [15:0] a1, logic [N-1:0] b_i_1, logic [N-1:0] b_j_1, logic one_term_1, logic b_sign_1);
-		int 	b = one_term_1 ? (1 << b_i_1) : (b_sign_1 ? (1 << b_i_1) - (1 << b_j_1) : (1 << b_i_1) + (1 << b_j_1));
+		int 	b = 0;
+		if (one_term_1) begin 
+			b = (1 << b_i_1);
+		end else begin 
+			b = b_sign_1 ? ((1 << b_i_1) - (1 << b_j_1)) : ((1 << b_i_1) + (1 << b_j_1));
+		end
 
 		a		<= a1;
 		b_i		<= b_i_1;
@@ -58,7 +63,7 @@ module two_bit_multiplier_tb (
 		@(tb_clk iff result_vld);
 		assert (c == a1 * b) //$display("✅ ANSWER IS CORRECT %d", c);
 			else begin 
-				$error("❌ ANSWER IS INCORRECT a: %d, b: %d, c: %d", a, b, c);
+				$error("❌ ANSWER IS INCORRECT a: %d, b: %d, c: %d should be: %d", a, b, c, a1 * b);
 				$finish;
 			end
 
