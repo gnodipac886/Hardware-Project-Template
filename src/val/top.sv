@@ -7,6 +7,7 @@ module top;
     /***************************** CLOCK GENERATION *******************************/
     bit clk;
     always #5 clk = clk === 1'b0;
+    default clocking tb_clk @(posedge clk); endclocking
 
     /*************************** TESTBENCH DECLARATION ****************************/
     template_tb tb_i(.*);
